@@ -1,10 +1,10 @@
 <template>
     <div>
-        <home-header></home-header>
-        <home-swiper></home-swiper>
-        <home-icons></home-icons>
-        <home-recommend></home-recommend>
-        <home-weeked></home-weeked>
+        <home-header :city="city"></home-header>
+        <home-swiper :swiperlist="swiperList"></home-swiper>
+        <home-icons :iconslist="iconsList"></home-icons>
+        <home-recommend :list="recommendList"></home-recommend>
+        <home-weeked :list="weekendList"></home-weeked>
     </div>
 </template>
 <script>
@@ -13,16 +13,44 @@ import HomeSwiper from './components/swiper'//swiper.vue组件
 import HomeIcons from './components/icons'//icons.vue组件
 import HomeRecommend from './components/recommend'//recommend.vue组件
 import HomeWeeked from './components/weeked'//recommend.vue组件
-    export default{
-       name:"Home",
-       components:{
-           HomeHeader,
-           HomeSwiper,
-           HomeIcons,
-           HomeRecommend,
-           HomeWeeked,
-       }
+import axios from 'axios'
+export default{
+    name:"Home",
+    components:{
+        HomeHeader,
+        HomeSwiper,
+        HomeIcons,
+        HomeRecommend,
+        HomeWeeked,
+    },
+    data (){
+        return {
+            city:'',
+            swiperList:[],
+            iconsList:[],
+            recommendList:[],
+            weekendList:[]
+        }
+    },
+    methods:{
+        getHomeInfo(){
+            axios.get('/static/mock/index.json').then(result=>{
+                console.log(result.data.data)
+                result=result.data
+                if(result.ret&&result.data){
+                    const data=result.data.data
+                    this.swiperList=result.data.swiperList
+                    this.iconsList=result.data.iconList
+                    this.recommendList=result.data.recommendList
+                    this.weekendList=result.data.weekendList
+                }
+            })
+        }
+    },
+    mounted (){
+        this.getHomeInfo()
     }
+}
 </script>
 <style scoped>
 
