@@ -39,6 +39,7 @@ export default{
                 result=result.data
                 if(result.ret&&result.data){
                     const data=result.data.data
+                    this.city=result.data.city
                     this.swiperList=result.data.swiperList
                     this.iconsList=result.data.iconList
                     this.recommendList=result.data.recommendList

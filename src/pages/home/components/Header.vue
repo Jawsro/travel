@@ -9,10 +9,12 @@
            <span><img src="../../../assets/iconfont/search.png" alt="" class="img"></span>
            输入城市/景点/游玩主题
         </div>
-       <div class="header-right">
-           城市
-            <span><img src="../../../assets/iconfont/jt.png" alt="" class="img"></span>
-        </div>
+        <router-link to="City">
+            <div class="header-right">
+                {{this.city}}
+                <span><img src="../../../assets/iconfont/jt.png" alt="" class="img"></span>
+            </div>
+        </router-link>
     </div>
 </template>
 <script>
@@ -53,6 +55,7 @@
             width:1.24rem
             float:right 
             text-align:center
+            color:#fff
             .img
                 width:.4rem
                 height:.4rem
