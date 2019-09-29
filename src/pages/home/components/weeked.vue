@@ -28,6 +28,7 @@ export default{
 }
 </script>
 <style lang="stylus" scoped>
+    @import '../../../assets/style/mixins.styl'
     .title
         line-height:.8rem
         background:#eee
@@ -47,7 +48,5 @@ export default{
         .item-desc
             line-height:.4rem
             color:#ccc
-            overflow:hidden
-            white-space:nowrap
-            text-overflow:ellipsis
+            ellipsis()
 </style>
