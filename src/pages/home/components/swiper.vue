@@ -17,7 +17,7 @@ export default{
     data() {
       return {
         swiperOption: {
-          pagination:".swiper-pagination",
+          pagination:{el:".swiper-pagination"},
           loop:true,
           autoplay:true
         }
@@ -32,7 +32,7 @@ export default{
 </script>
 <style lang="stylus" scoped>
   .aswiper>>>.swiper-pagination-bullet-active
-    background-color: #fff
+    background-color: red
   .aswiper
     overflow: hidden
     width: 100%
