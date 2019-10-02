@@ -12,6 +12,7 @@
             <li v-for="item of list" 
                 :key="item.id"
                 class="saerch-item border-bottom "
+                @click="hanldCityclick(item.name)"
             >
                 {{item.name}}
             </li>
@@ -44,7 +45,7 @@ export default{
     },
     watch:{
         keyword (){
-            console.log(this.keyword)
+            //console.log(this.keyword)
             if(this.timer){
                 clearTimeout(this.timer)
             }
@@ -56,8 +57,8 @@ export default{
                 const result=[]
                 for(let i in this.cities){
                     this.cities[i].forEach((value) => {
-                        console.log(value.spell.indexOf(this.keyword),value.spell);
-                        if(value.spell.indexOf(this.keyword)==0 || value.name.indexOf(this.keyword)==0){
+                        //console.log(value.spell.indexOf(this.keyword),value.spell);
+                        if(value.spell.indexOf(this.keyword)!=-1 || value.name.indexOf(this.keyword)!=-1){
                             result.push(value)
                         }
                     });
@@ -69,6 +70,13 @@ export default{
     mounted(){
         this.scroll=new BScroll(this.$refs.search)
     },
+    methods:{
+        hanldCityclick(city){
+            this.$store.commit("changeCity",city)
+            this.$router.push("/")
+        },
+       
+    }
 }
 </script>
 <style lang="stylus" scoped>

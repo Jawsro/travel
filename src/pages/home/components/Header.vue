@@ -11,7 +11,7 @@
         </div>
         <router-link to="City">
             <div class="header-right">
-                {{this.city}}
+                {{$store.getters.getCity}}
                 <span><img src="../../../assets/iconfont/jt.png" alt="" class="img"></span>
             </div>
         </router-link>
@@ -19,10 +19,7 @@
 </template>
 <script>
     export default{
-       name:"HomeHeader",
-       props:{
-           city:String
-       }
+       name:"HomeHeader"
     }
 </script>
 <style lang="stylus" scoped>
@@ -52,7 +49,8 @@
                 height:.4rem
                 margin-left:.2rem
         .header-right
-            width:1.24rem
+            min-width:1.04rem
+            padding-left: 0.1rem
             float:right 
             text-align:center
             color:#fff

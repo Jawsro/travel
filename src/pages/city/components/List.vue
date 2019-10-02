@@ -5,14 +5,17 @@
                 <div class="title border-topbottom">当前城市</div>
                 <div class="btn-list">
                     <div class="btn-wrapper">
-                            <div class="btn">北京</div>
+                            <div class="btn"> {{$store.getters.getCity}}</div>
                         </div>
                 </div>
             </div>
             <div class="area">
                 <div class="title border-topbottom">热门城市</div>
                 <div class="btn-list">
-                    <div class="btn-wrapper" v-for="item of hotCities" :key="item.id">
+                    <div class="btn-wrapper" 
+                        v-for="item of hotCities" 
+                        :key="item.id"
+                        @click="hanldCityclick(item.name)">
                         <div class="btn">{{item.name}}</div>
                     </div>
                     
@@ -24,7 +27,8 @@
                     <div class="item border-bottom" 
                         v-for='inner of item' 
                         :key="inner.id"
-                        :ref="key">
+                        :ref="key"
+                        @click="hanldCityclick(inner.name)">
                         {{inner.name}}
                     </div>
                 </div>
@@ -53,6 +57,13 @@ export default{
             }
             //console.log(this.letter)
         }
+    },
+    methods:{
+        hanldCityclick(city){
+            this.$store.commit("changeCity",city)
+            this.$router.push("/")
+        },
+       
     }
 }
 </script>
