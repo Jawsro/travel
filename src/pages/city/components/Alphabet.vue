@@ -50,7 +50,7 @@ export default {
     handleTouchMove (e) {
       if (this.touchStatus) {
         if (this.timer) {
-          clearTimeout(this.timer)
+          clearTimeout(this.timer)//节流，性能优化
         }
         this.timer = setTimeout(() => {
           const touchY = e.touches[0].clientY - 74
