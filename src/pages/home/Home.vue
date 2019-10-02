@@ -14,6 +14,7 @@ import HomeIcons from './components/icons'//icons.vue组件
 import HomeRecommend from './components/recommend'//recommend.vue组件
 import HomeWeeked from './components/weeked'//recommend.vue组件
 import axios from 'axios'
+import {mapState} from 'vuex'
 export default{
     name:"Home",
     components:{
@@ -25,15 +26,19 @@ export default{
     },
     data (){
         return {
+            lastCity:[],
             swiperList:[],
             iconsList:[],
             recommendList:[],
             weekendList:[]
         }
     },
+    computed:{
+        ...mapState(['city'])
+    },
     methods:{
         getHomeInfo(){
-            axios.get('/static/mock/index.json').then(result=>{
+            axios.get('/static/mock/index.json?city='+this.city).then(result=>{
                 console.log(result.data.data)
                 result=result.data
                 if(result.ret&&result.data){
@@ -47,7 +52,16 @@ export default{
         }
     },
     mounted (){
+        this.lastCity=this.city
         this.getHomeInfo()
+    },
+    activated(){
+        //当页面重新显示的时候会被重新执行
+        //实现性能优化
+        if(this.lastCity!==this.city){
+            this.lastCity=this.city
+            this.getHomeInfo()
+        }
     }
 }
 </script>
