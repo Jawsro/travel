@@ -39,10 +39,9 @@ export default{
     methods:{
         getHomeInfo(){
             axios.get('/static/mock/index.json?city='+this.city).then(result=>{
-                console.log(result.data.data)
+                //console.log(result.data.data)
                 result=result.data
                 if(result.ret&&result.data){
-                    const data=result.data.data
                     this.swiperList=result.data.swiperList
                     this.iconsList=result.data.iconList
                     this.recommendList=result.data.recommendList
