@@ -13,11 +13,14 @@
         <commen-gallary 
             :imags="imags" 
             v-show="showGallary"
-            @close="handlGallaryClose"></commen-gallary>
+            @close="handlGallaryClose">
+        </commen-gallary>
+        
     </div>
 </template>
 <script>
 import CommenGallary from '../../../commen/gallary/Gallary'//引入Gallary.vue组件
+
 export default{
     name: 'DetailBanner',
     data(){
@@ -28,6 +31,7 @@ export default{
     },
     components:{
         CommenGallary,
+       
     },
     methods:{
         hanldBanner(){
