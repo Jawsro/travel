@@ -1,17 +1,17 @@
 <template>
     <div>
         <div class="banner" @click="hanldBanner"> 
-            <img class="banner-img" src="http://img1.qunarzz.com/sight/p0/201404/23/04b92c99462687fa1ba45c1b5ba4ad77.jpg_600x330_bf9c4904.jpg" alt="">
+            <img class="banner-img" :src="bannerImg" alt="">
             <div class="banner-info">
-                <div class="banner-title">大连圣亚海洋世界(AAAA景区)</div>
+                <div class="banner-title">{{sightName}}</div>
                 <div class="banner-num">
                     <span><img src="../../../assets/iconfont/img2.png" alt="" class="img"></span>
-                    39
+                    {{this.gallaryImgs.length}}
                 </div>
             </div>
         </div>
         <commen-gallary 
-            :imags="imags" 
+            :imags="gallaryImgs" 
             v-show="showGallary"
             @close="handlGallaryClose">
         </commen-gallary>
@@ -23,9 +23,13 @@ import CommenGallary from '../../../commen/gallary/Gallary'//引入Gallary.vue�
 
 export default{
     name: 'DetailBanner',
+    props:{
+        bannerImg:String,
+        sightName:String,
+        gallaryImgs:Array
+    },
     data(){
         return {
-            imags:["http://img1.qunarzz.com/sight/p0/201404/23/04b92c99462687fa1ba45c1b5ba4ad77.jpg_600x330_bf9c4904.jpg","http://img1.qunarzz.com/sight/p0/201404/23/04b92c99462687fa1ba45c1b5ba4ad77.jpg_600x330_bf9c4904.jpg"],
             showGallary:false
         }
     },

@@ -65,6 +65,7 @@ export default{
             top:.2rem
             left 0.2rem
     .header-fixed
+        z-index:99
         position:fixed
         top:0
         left:0
