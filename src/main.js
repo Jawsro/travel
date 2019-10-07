@@ -6,6 +6,7 @@ import App from './App'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import fastClick from "fastclick"//解决移动端点击延迟的问题
+import "babel-polyfill"//解决所有浏览器支持promise的问题
 import "./assets/style/reset.css"
 import "./assets/style/border.css"//解决1px边框的问题
 import "./assets/style/iconfont.css"
