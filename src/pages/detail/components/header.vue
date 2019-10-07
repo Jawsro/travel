@@ -31,7 +31,7 @@ export default{
         handelScroll(){
             console.log(document.documentElement.scrollTop)
             const top=document.documentElement.scrollTop
-            if(top>40){
+            if(top>60){
                 const opacity=top/140
                 this.opacityStyle={opacity}
                 this.showAbs=false
@@ -40,10 +40,10 @@ export default{
             }
         }
     },
-    activated(){
+     mounted(){
         window.addEventListener("scroll",this.handelScroll)
     },
-    deactivated(){
+    unmounted(){
          window.removeEventListener("scroll",this.handelScroll)
     }
 
