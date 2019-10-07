@@ -10,17 +10,18 @@
                 </div>
             </div>
         </div>
-        <commen-gallary 
-            :imags="gallaryImgs" 
-            v-show="showGallary"
-            @close="handlGallaryClose">
-        </commen-gallary>
-        
+        <fade-animation>
+            <commen-gallary 
+                :imags="gallaryImgs" 
+                v-show="showGallary"
+                @close="handlGallaryClose">
+            </commen-gallary>
+        </fade-animation>
     </div>
 </template>
 <script>
 import CommenGallary from '../../../commen/gallary/Gallary'//引入Gallary.vue组件
-
+import FadeAnimation from '../../../commen/fade/animation'//引入Fade.vue组件
 export default{
     name: 'DetailBanner',
     props:{
@@ -33,9 +34,10 @@ export default{
             showGallary:false
         }
     },
+    //注册局部组件
     components:{
         CommenGallary,
-       
+        FadeAnimation
     },
     methods:{
         hanldBanner(){
