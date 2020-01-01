@@ -1,8 +1,8 @@
 <template>
   <div class="aswiper">
     <swiper :options="swiperOption" v-if="showSwiper">
-      <swiper-slide v-for="item of swiperlist" :key="item.id">
-        <img class="swiper-img" :src="item.imgUrl" />
+      <swiper-slide v-for="(item,index) of swiperList" :key="index">
+        <img class="swiper-img" :src="item" />
       </swiper-slide>
       <div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
@@ -10,10 +10,15 @@
 </template>
 <script>
 export default{
-    name:"HomeSwiper",
+    name:"HostSwiper",
     props:{
-      swiperlist:Array//父组件传过来的
-    },
+        swiperList:{
+            type:Array,
+            default (){
+                return []
+            }
+        }
+      },  
     data() {
       return {
         swiperOption: {
@@ -23,16 +28,16 @@ export default{
         }
       }
     },
-    computed: {
+     computed: {
       showSwiper () {
-        return this.swiperlist.length
+        return this.swiperList.length
       }
-  }
+     }
 }
 </script>
 <style lang="stylus" scoped>
   .aswiper>>>.swiper-pagination-bullet-active
-    background-color: #00ffe3
+    background-color: blue
   .aswiper
     overflow: hidden
     width: 100%
@@ -41,4 +46,5 @@ export default{
     background: #eee
     .swiper-img
       width: 100%
+      height:100%
 </style>

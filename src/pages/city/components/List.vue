@@ -47,7 +47,7 @@ export default{
     },
     mounted(){
         this.scroll=new BScroll(this.$refs.wrapper)
-        //console.log(this.$refs.wrapper)
+        console.log(this.$refs.wrapper)
     },
     watch:{
         letter(){
@@ -55,13 +55,14 @@ export default{
                 const element=this.$refs[this.letter][0]
                 this.scroll.scrollToElement(element)
             }
-            //console.log(this.letter)
+            console.log(this.letter)
         }
     },
     methods:{
         hanldCityclick(city){
             this.$store.commit("changeCity",city)
             this.$router.push("/")
+            // this.$router.go(-1)
         },
        
     }

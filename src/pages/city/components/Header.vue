@@ -1,11 +1,11 @@
 <template>
     <div class="header">
         城市选择
-        <router-link to="/">
+        <div @click="goback()">
             <div class="header-back">
                 <img src="../../../assets/iconfont/back.png" alt="" class="img header-back">
             </div>
-        </router-link>
+        </div>
     </div>
 </template>
 <script>
@@ -15,6 +15,11 @@ export default{
     data (){
         return {
            
+        }
+    },
+    methods:{
+        goback(){
+            this.$router.go(-1)
         }
     }
 }

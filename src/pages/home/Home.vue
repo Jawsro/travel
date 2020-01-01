@@ -2,7 +2,7 @@
     <div>
         <home-header></home-header>
         <home-swiper :swiperlist="swiperList"></home-swiper>
-        <home-icons :iconslist="iconsList"></home-icons>
+        <home-icons :iconslist="iconsList" :city="city"></home-icons>
         <home-recommend :list="recommendList"></home-recommend>
         <home-weeked :list="weekendList"></home-weeked>
     </div>
@@ -38,16 +38,44 @@ export default{
     },
     methods:{
         getHomeInfo(){
-            axios.get('/api/index.json?city='+this.city).then(result=>{
-                //console.log(result.data.data)
+            axios.get('/static/mock/index.json?city='+this.city).then(result=>{
+                //console.log(result.data)
+               // console.log(this.city)
                 result=result.data
                 if(result.ret&&result.data){
                     this.swiperList=result.data.swiperList
                     this.iconsList=result.data.iconList
-                    this.recommendList=result.data.recommendList
-                    this.weekendList=result.data.weekendList
+                    //this.weekendList=result.data.weekendList
+                   console.log(this.iconsList)
                 }
             })
+             axios.get('/static/mock/host.json',{params:{city:this.city}}).then(result=>{
+                //console.log(result.data)
+                //console.log(this.city)
+                let arr=[];
+               for(let key in result.data){
+                   //console.log(result.data[key])
+                   if(result.data[key].city==this.city){
+                       arr.push(result.data[key])
+                    }
+               }
+               //console.log(arr)
+                this.recommendList=arr
+            })
+
+            axios.get('/static/mock/week.json',{params:{city:this.city}}).then(result=>{
+                //console.log(result.data)
+                //console.log(this.city)
+                let arr=[];
+               for(let key in result.data){
+                   //console.log(result.data[key])
+                   if(result.data[key].city==this.city){
+                       arr.push(result.data[key])
+                    }
+               }
+               //console.log(arr)
+                this.weekendList=arr
+            })
         }
     },
     mounted (){

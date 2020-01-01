@@ -1,25 +1,30 @@
 <template>
     <div class="header">
-       <router-link tag="div" to="/register" class="header-left">
+       <div @click="goBack()" class="header-left" >
            <div>
-               <img src="../../../assets/iconfont/me.png" alt="" class="img">
+               <img src="../../assets/iconfont/back.png" alt="" class="img">
            </div>
-       </router-link>
-       <router-link to="seacher" class="header-input">
-           <span><img src="../../../assets/iconfont/search.png" alt="" class="img"></span>
+       </div>
+       <div class="header-input">
+           <span><img src="../../assets/iconfont/search.png" alt="" class="img"></span>
            输入城市/景点/游玩主题
-        </router-link>
+        </div>
         <router-link to="City">
             <div class="header-right">
                 {{$store.getters.getCity}}
-                <span><img src="../../../assets/iconfont/jt.png" alt="" class="img"></span>
+                <span><img src="../../assets/iconfont/jt.png" alt="" class="img"></span>
             </div>
         </router-link>
     </div>
 </template>
 <script>
     export default{
-       name:"HomeHeader"
+       name:"HomeHeader",
+       methods:{
+           goBack(){
+               this.$router.go(-1)
+           }
+       }
     }
 </script>
 <style lang="stylus" scoped>

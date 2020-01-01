@@ -11,7 +11,12 @@ import "./assets/style/reset.css"
 import "./assets/style/border.css"//解决1px边框的问题
 import "./assets/style/iconfont.css"
 import 'swiper/dist/css/swiper.css'
+import Vant from 'vant'
+import 'vant/lib/index.css'
+import { Toast } from 'vant'
 
+Vue.use(Toast)
+Vue.use(Vant)
 Vue.config.productionTip = false
 fastClick.attach(document.body)
 Vue.use(VueAwesomeSwiper)
@@ -47,7 +52,23 @@ var store=new Vuex.Store({
       return state.city
     }
   },
-})
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requireAuth)){  // 判断该路由是否需要登录权限
+    if(!sessionStorage.getItem('phone') && !localStorage.getItem('phone')){
+      next({
+        path: '/login',
+        query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      })
+    }else{
+    	 next();
+    }
+  }else {
+    next();
+  }
+});
+
 new Vue({
   el: '#app',
   router,

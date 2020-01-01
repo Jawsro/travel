@@ -3,7 +3,7 @@
         <div class="banner" @click="hanldBanner"> 
             <img class="banner-img" :src="bannerImg" alt="">
             <div class="banner-info">
-                <div class="banner-title">{{sightName}}</div>
+                <div class="banner-title">{{sightName}}{{grade}}</div>
                 <div class="banner-num">
                     <span><img src="../../../assets/iconfont/img2.png" alt="" class="img"></span>
                     {{this.gallaryImgs.length}}
@@ -27,6 +27,7 @@ export default{
     props:{
         bannerImg:String,
         sightName:String,
+        grade:String,
         gallaryImgs:Array
     },
     data(){

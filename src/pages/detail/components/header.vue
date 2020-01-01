@@ -1,12 +1,12 @@
 <template>
     <div>
-        <router-link class="header-abs" tag="div" to="/" v-show="showAbs">
+        <div class="header-abs"  @click="boBack()" v-show="showAbs">
             <img src="../../../assets/iconfont/back.png" alt="" class="img">
-        </router-link> 
+        </div> 
         <div class="header-fixed" 
             v-show="!showAbs"
             :style="opacityStyle">
-            景点详情
+            {{sightName}}
             <router-link to="/">
             <div class="header-fixed-back" >
                 <img src="../../../assets/iconfont/back.png" alt="" class="img header-fixed-back">
@@ -19,6 +19,9 @@
 
 export default{
     name: 'DetailHeader',
+    props:{
+        sightName:String
+    },
     data(){
         return {
             showAbs:true,
@@ -28,8 +31,11 @@ export default{
         }
     },
     methods:{
+        boBack(){
+            this.$router.go(-1)
+        },
         handelScroll(){
-            console.log(document.documentElement.scrollTop)
+            //console.log(document.documentElement.scrollTop)
             const top=document.documentElement.scrollTop
             if(top>60){
                 const opacity=top/140

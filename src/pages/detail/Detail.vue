@@ -3,8 +3,9 @@
         <detail-banner 
             :bannerImg="bannerImg"
             :sightName="sightName"
+            :grade="grade"
             :gallaryImgs="gallaryImgs"></detail-banner>
-        <detail-header></detail-header>
+        <detail-header :sightName="sightName"></detail-header>
         <detail-list :list="list"></detail-list>
         <div class="content"></div>
     </div>
@@ -26,25 +27,32 @@ export default{
             list:[],
             bannerImg:'',
             sightName:'',
+            grade:'',
             gallaryImgs:[]
         }
     },
     methods:{
         getDetail(){
-            axios.get('/api/detail.json?',
+            axios.get('/static/mock/detai1l.json?',
                     {params:{
-                        id:this.$route.params.id}
+                        sightName:this.$route.params.id
+                        }
                     
                     }).then(result=>{
-                        console.log(result.data)
-                        result=result.data
-                        if(result.ret&&result.data){
-                            this.list=result.data.categoryList
-                            this.bannerImg=result.data.bannerImg
-                            this.sightName=result.data.sightName
-                            this.gallaryImgs=result.data.gallaryImgs
+                        //console.log(result.data,this.$route.params.id)
+                        let arr=[];
+                        for(let i in result.data){
+                            //console.log(result.data[i].sightName)
+                            if(result.data[i].sightName===this.$route.params.id){
+                                arr.push(result.data[i])
+                                 this.list=arr[0].categoryList
+                                 this.bannerImg=arr[0].bannerImg
+                                 this.sightName=arr[0].sightName
+                                 this.grade=arr[0].grade
+                                 this.gallaryImgs=arr[0].gallaryImgs
+                            }
                         }
-               
+                        //console.log(arr)
             })
         }
     },

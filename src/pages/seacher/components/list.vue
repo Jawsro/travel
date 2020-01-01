@@ -1,10 +1,10 @@
 <template>
-    <div class="recommend">
-        <div class="title">热销推荐</div>
+    <div class="list">
+        <div class="title">猜你喜欢</div>
         <ul>
             <router-link :to="'/detail/' + item.title" 
                         tag="li" class="item" 
-                        v-for="item of list" 
+                        v-for="item of seacherlist" 
                         :key="item.id"
                     >
                 <img :src="item.imgUrl" alt="" class="img">
@@ -13,33 +13,39 @@
                         {{item.title}}
                     </p>
                     <p class="item-desc">
-                        {{item.desc}}
+                        <span class="color">￥</span><span class="perice">{{item.perice}}</span>起
                     </p>
-                    <button class="item-button">查看详情</button>
+                    <div class="item-button">
+                        <span>{{item.palace}}</span>
+                    </div>
                 </div>
             </router-link>
         </ul>
     </div>
 </template>
 <script>
+
 export default{
-       name:"HomeRecommend",
-       
-       props:{
-           list:Array
-       },
-       methods:{
-          
-       }
-       
+    name: 'List',
+    data(){
+        return{
+           
+        }
+    },
+    props:{
+         seacherlist:Array
+    }
 }
 </script>
-<style lang="stylus" scoped>
+
+<style lang="stylus" >
     .title
-        line-height:.8rem
-        background:#eee
-        text-indent:.2rem
-        margin-top:.2rem
+        height:.7rem
+        background:#f2f2f2
+        line-height:.7rem
+        font-size:.32rem  
+        font-weight:550
+        margin-bottom:.3rem
     .item
         overflow:hidden
         display:flex
@@ -57,15 +63,15 @@ export default{
                 font-size:.32rem
             .item-desc
                 line-height:.4rem
-                color:#ccc
-                overflow:hidden
-                white-space:nowrap
-                text-overflow:ellipsis
+                margin-top:.1rem
+                .color
+                    color:#ff9300
+                    font-size:.2rem
+                .perice
+                    color:#ff9300
+                    font-size:.38rem
+                    font-size:600
             .item-button
                 line-height:.44rem
-                background:#ff9300
-                padding:0 .2rem
-                border-radius:.06rem
-                color:#fff
                 margin-top:.1rem
 </style>
